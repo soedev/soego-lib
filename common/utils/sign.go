@@ -118,7 +118,7 @@ func orderParam(source interface{}, bizKey string) (returnStr string) {
 func Struct2map(content interface{}, bizKey string) string {
 	var tempArr []string
 	temString := ""
-	var val map[string]string
+	var val map[string]interface{}
 	if marshalContent, err := json.Marshal(content); err != nil {
 		fmt.Println(err)
 	} else {
@@ -139,7 +139,7 @@ func Struct2map(content interface{}, bizKey string) string {
 			continue
 		}
 		i++
-		tempArr = append(tempArr, k+"="+v)
+		tempArr = append(tempArr, k+"="+fmt.Sprintf("%v", v))
 	}
 	sort.Slice(tempArr, func(i int, j int) bool {
 		return strings.ToLower(tempArr[i]) < strings.ToLower(tempArr[j])
@@ -157,7 +157,7 @@ func Struct2map(content interface{}, bizKey string) string {
 func GetXunLianTemp(content interface{}, key string) string {
 	var tempArr []string
 	temString := ""
-	var val map[string]string
+	var val map[string]interface{}
 	if marshalContent, err := json.Marshal(content); err != nil {
 		fmt.Println(err)
 	} else {
@@ -178,7 +178,7 @@ func GetXunLianTemp(content interface{}, key string) string {
 			continue
 		}
 		i++
-		tempArr = append(tempArr, k+"="+v)
+		tempArr = append(tempArr, k+"="+fmt.Sprintf("%v", v))
 	}
 	sort.Slice(tempArr, func(i int, j int) bool {
 		return strings.ToLower(tempArr[i]) < strings.ToLower(tempArr[j])
